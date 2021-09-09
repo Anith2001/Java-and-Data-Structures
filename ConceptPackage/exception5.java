@@ -1,0 +1,36 @@
+/* Checked exceptions have Exception in their hierarchy but not RuntimeException.
+  They must be handled or declared. Errors extend the Error class. 
+  They are thrown by the JVM and should not be handled or declared. */
+
+class Exception5
+{
+  static String strObj;
+  public static int addPositive(int x, int y) throws Exception{
+    if (x < 0 || y < 0)
+      throw new IllegalArgumentException("arguments cannot be negative");
+    return x + y;
+  }
+
+  static {
+    int[] count = new int[3];
+    try{
+      int num = count[-1]; 
+    }
+    catch(Exception e){
+      System.out.println("static ");
+    }
+       // ExceptionInInitializerError
+  }
+
+  public static void main(String[] args) throws Exception
+  { 
+    String str = "kmit";
+    Object obj = str;
+    //Integer number = (Integer) obj;   // class cast exception
+    //System.out.println(addPositive(-1, 3));
+
+    //System.out.println(strObj.length());  // NullPointerException
+
+    System.out.println(Integer.parseInt("kmit")); // NumberFormatException
+	}
+}
